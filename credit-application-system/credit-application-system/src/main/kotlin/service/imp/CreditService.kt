@@ -1,4 +1,4 @@
-package dev.Roberto.Simoes.credit.applicationsystem.implementation
+package dev.Roberto.Simoes.credit.applicationsystem.service.implementation
 
 import dev.Roberto.Simoes.credit.applicationsystem.Repository.CreditRepository
 import entity.Credit
@@ -9,11 +9,12 @@ import dev.Roberto.Simoes.credit.applicationsystem.service.iCreditService as iCr
 @Service
 class CreditService(
     private val creditRepository: CreditRepository,
-private val customerService: CustomerService) : iCreditService {
+    private val customerService: CustomerService
+) : iCreditService {
 
     override fun save(credit: Credit): Credit {
         credit.apply {
-            customer=customerService.findById(credit.customer?.id!!)
+            customer = customerService.findById(credit.customer?.id!!)
         }
         return this.creditRepository.save(credit)
     }
@@ -21,8 +22,8 @@ private val customerService: CustomerService) : iCreditService {
         this.creditRepository.findAllByCustomerId(customerId)
 
     override fun finByCreditCode(customerId: Long,creditCode: UUID): Credit {
-       val credit:Credit = (this.creditRepository.findByCreditCode(creditCode)?:
-        throw RuntimeException("Creditcode $creditCode not found"))
-        return if (credit.customer?.id == customerId)credit else throw RuntimeException("Contact o admin")
+       val credit:Credit = (this.creditRepository.findByCreditCode(creditCode)
+           ?:throw RuntimeException("Creditcode $creditCode not found"))
+        return if (credit.customer?.id == customerId)credit else throw RuntimeException("Contact admin")
     }
 }

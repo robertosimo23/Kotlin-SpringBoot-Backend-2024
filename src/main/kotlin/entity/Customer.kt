@@ -1,9 +1,9 @@
 package entity
-
+import jakarta.persistence.Entity
 import entity.Address
 import entity.Credit
 import java.math.BigDecimal
-
+@Entity
 data class Customer(
     var firstName :String = "",
     var lastName : String = "",

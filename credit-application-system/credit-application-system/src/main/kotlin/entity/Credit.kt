@@ -2,12 +2,14 @@ package entity
 
 import enumeration.Status
 import jakarta.persistence.*
+import org.springframework.boot.autoconfigure.domain.EntityScan
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.UUID
 
 @Entity
-//@Table(name = "Credito")
+
+//Table(name = "Credito")
 data class Credit (
     @Column(nullable = false, unique = true) var creditCode: UUID = UUID.randomUUID(),
     @Column(nullable = false) val creditValue: BigDecimal = BigDecimal.ZERO,
