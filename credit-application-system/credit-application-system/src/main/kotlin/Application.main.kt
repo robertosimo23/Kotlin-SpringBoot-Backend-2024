@@ -1,5 +1,6 @@
 package dev.Roberto.Simoes.credit.applicationsystem
 
+
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
@@ -7,5 +8,5 @@ import org.springframework.boot.runApplication
 class CreditApplicationSystemApplication
 
 fun main(args: Array<String>) {
-	runApplication<CreditApplicationSystemApplication>(*args)
+    runApplication<CreditApplicationSystemApplication>(*args)
 }
