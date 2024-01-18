@@ -17,9 +17,9 @@ class CustomerController(
 ) {
 
     @PostMapping
-    fun saveCustomers(@RequestBody @Valid customerDTO: CustomerDTO): ResponseEntity<String> {
-        val savedCustomer = this.customerService.save(customerDTO.toEntity())
-        return ResponseEntity.status(HttpStatus.CREATED).body("Customer ${savedCustomer.email}saved!")
+    fun saveCustomer(@RequestBody @Valid customerDto: CustomerDTO): ResponseEntity<CustomerView> {
+        val savedCustomer: Customer = this.customerService.save(customerDto.toEntity())
+        return ResponseEntity.status(HttpStatus.CREATED).body(CustomerView(savedCustomer))
     }
 
     @GetMapping("/{id}")
